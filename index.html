@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ding.dev</title>
+  <meta name="description" content="Ding — 西川实验学校初中生，热爱运动和美食，梦想出国看看世界。">
+
+  <!-- Fonts: Space Grotesk + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================
+       CSS Variables — from design spec
+       ======================================== */
+    :root {
+      --bg: #0A0A0B;
+      --accent: #5E6AD2;
+      --text: #FFFFFF;
+      --text-secondary: #A1A1AA;
+      --text-muted: #525259;
+      --card: #141416;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(94, 106, 210, 0.5);
+      --radius: 8px;
+      --max-width: 1280px;
+      --side-padding: 64px;
+
+      --font-en: 'Space Grotesk', sans-serif;
+      --font-cn: 'Noto Sans SC', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* ========================================
+       Reset
+       ======================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-cn);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ========================================
+       Layout helpers
+       ======================================== */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--side-padding);
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      border: none;
+    }
+
+    /* ========================================
+       Navigation Bar
+       ======================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 11, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      height: 64px;
+      padding: 0 var(--side-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-link.en { font-family: var(--font-en); font-weight: 500; }
+    .nav-link.cn { font-family: var(--font-cn); }
+
+    .nav-link:hover {
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    /* ========================================
+       Hero Section
+       ======================================== */
+    .hero {
+      padding: 80px var(--side-padding) 64px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero-head {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .hero-head-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-kicker {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 88px;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-cn);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .hero-bio {
+      font-family: var(--font-cn);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+
+    .hero-social {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: #6B7AE0;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(94, 106, 210, 0.3);
+    }
+
+    .btn-ghost {
+      background: var(--card);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .hero-right {
+      width: 320px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .avatar {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .profile-card-social {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+    }
+
+    .profile-card-social .btn {
+      flex: 1;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+
+    .profile-card-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      border: none;
+      margin: 0;
+    }
+
+    .quick-nav {
+      width: 100%;
+    }
+
+    .quick-nav-item {
+      display: block;
+      padding: 14px 24px;
+      font-size: 14px;
+      color: var(--text);
+      transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .quick-nav-item:last-child {
+      border-bottom: none;
+    }
+
+    .quick-nav-item.en { font-family: var(--font-en); font-weight: 500; }
+    .quick-nav-item.cn { font-family: var(--font-cn); }
+
+    .quick-nav-item:hover {
+      color: var(--accent);
+      background: rgba(94, 106, 210, 0.08);
+      transform: translateX(4px);
+    }
+
+    /* ========================================
+       Section base
+       ======================================== */
+    .section {
+      padding: 80px var(--side-padding);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--text);
+      margin-bottom: 36px;
+    }
+
+    /* ========================================
+       About Section
+       ======================================== */
+    .about-body {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    .currently-card {
+      width: 280px;
+      flex-shrink: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .currently-title {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .currently-item {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ========================================
+       Dream Section
+       ======================================== */
+    .dream-grid {
+      display: flex;
+      gap: 20px;
+    }
+
+    .dream-card {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .dream-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .dream-card-label {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--accent);
+    }
+
+    .dream-card-title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .dream-card-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* ========================================
+       Motto Section
+       ======================================== */
+    .motto {
+      padding: 100px var(--side-padding);
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .motto-quote {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .motto-sub {
+      font-size: 16px;
+      color: var(--accent);
+    }
+
+    /* ========================================
+       Footer
+       ======================================== */
+    .footer {
+      padding: 48px var(--side-padding) 48px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .footer-tag {
+      font-family: var(--font-en);
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-link {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-copyright {
+      font-family: var(--font-en);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-cn);
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .back-to-top:hover {
+      color: var(--accent);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ========================================
+       Scroll Reveal Animation
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       Responsive — Mobile
+       ======================================== */
+    @media (max-width: 900px) {
+      :root {
+        --side-padding: 24px;
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 48px var(--side-padding) 48px;
+      }
+
+      .hero-name {
+        font-size: 56px;
+      }
+
+      .hero-kicker {
+        font-size: 14px;
+      }
+
+      .hero-tagline {
+        font-size: 24px;
+      }
+
+      .hero-head {
+        gap: 16px;
+      }
+
+      .avatar {
+        width: 180px;
+        height: 180px;
+      }
+
+      .hero-right {
+        width: 100%;
+        align-items: center;
+      }
+
+      .about-body {
+        flex-direction: column;
+      }
+
+      .currently-card {
+        width: 100%;
+      }
+
+      .dream-grid {
+        flex-direction: column;
+      }
+
+      .motto-quote {
+        font-size: 32px;
+      }
+
+      .section {
+        padding: 48px var(--side-padding);
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name {
+        font-size: 32px;
+      }
+
+      .motto-quote {
+        font-size: 26px;
+      }
+
+      .nav-logo {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== Nav Bar ==================== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">Ding.dev</a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link cn">关于</a>
+        <a href="#dream" class="nav-link cn">梦想</a>
+        <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="nav-link en">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="top"></div>
+
+  <!-- ==================== Hero Section ==================== -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-head">
+        <div class="hero-head-text">
+          <span class="hero-kicker">// HELLO WORLD</span>
+          <h1 class="hero-name">Hi, I'm Ding</h1>
+          <h2 class="hero-tagline">西川实验学校 · 初中生</h2>
+        </div>
+        <img src="./avatar.png" alt="Ding" class="avatar">
+      </div>
+      <p class="hero-bio">球场上的汗水、餐桌上的惊喜，都是我课余最期待的事。周末约朋友打一场球，或者去街角那家面馆，简简单单就很开心。</p>
+      <p class="hero-bio">还是个 Minecraft 迷，喜欢那种"整个世界都由你来创造"的感觉。从挖到第一块铁矿石，到建起自己的小屋，再到在无边无际的方块世界里冒险——每一次探索都让我着迷。也许我喜欢的不只是游戏本身，而是那种自由和无限可能。</p>
+      <p class="hero-bio">哥哥在德国，每次视频他都给我看那边的街道和天空。那些画面让我更加确定：中考只是第一关，走过去，外面还有更大的世界在等我。</p>
+      <p class="hero-bio">热爱运动和美食的初中生，对世界充满好奇，梦想着有一天能出国看看更大的世界。目前正全力备战中考。</p>
+    </div>
+    <div class="hero-right">
+      <div class="profile-card">
+        <div class="profile-card-social">
+          <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
+          <a href="#about" class="btn btn-ghost">WeChat</a>
+          <a href="#about" class="btn btn-ghost">QQ</a>
+        </div>
+        <hr class="profile-card-divider">
+        <div class="quick-nav">
+          <a href="#about" class="quick-nav-item cn">📖 关于我</a>
+          <a href="#dream" class="quick-nav-item cn">🌍 梦想清单</a>
+          <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="quick-nav-item en">🐙 GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ==================== About Section ==================== -->
+  <section class="section reveal" id="about">
+    <span class="section-label">// ABOUT</span>
+    <h2 class="section-title">关于我</h2>
+    <div class="about-body">
+      <div class="about-text">
+        <p>我是西川实验学校的一名初中生。课余时间喜欢打打球、跑跑步，也热衷于发掘各种好吃的。</p>
+        <p>虽然现在学习压力比较大，但我一直相信，努力走过这段路，就能看到更广阔的世界。</p>
+      </div>
+      <div class="currently-card">
+        <span class="currently-title">CURRENTLY</span>
+        <p class="currently-item">备考 — 全力备战中考</p>
+        <p class="currently-item">热爱 — 运动与美食</p>
+        <p class="currently-item">期待 — 出国看看世界</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ==================== Dream Section ==================== -->
+  <section class="section reveal" id="dream">
+    <span class="section-label">// DREAM</span>
+    <h2 class="section-title">梦想清单</h2>
+    <div class="dream-grid">
+      <div class="dream-card">
+        <span class="dream-card-label">Alps</span>
+        <h3 class="dream-card-title">阿尔卑斯山</h3>
+        <p class="dream-card-desc">想站在阿尔卑斯山巅，看看童话般的雪山小镇，感受大自然的壮阔。</p>
+      </div>
+      <div class="dream-card">
+        <span class="dream-card-label">Germany</span>
+        <h3 class="dream-card-title">去德国找哥哥</h3>
+        <p class="dream-card-desc">想飞去德国，和哥哥一起走在他生活的城市，看看他眼中的世界。</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ==================== Motto Section ==================== -->
+  <section class="motto reveal">
+    <p class="motto-quote">Keep going, see the world.</p>
+    <p class="motto-sub">— 一直走下去，看看这个广阔的世界</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <span class="footer-logo">Ding.dev</span>
+    <span class="footer-tag">Built with passion. Powered by curiosity.</span>
+    <div class="footer-links">
+      <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      <a href="#about" class="footer-link">WeChat</a>
+      <a href="#about" class="footer-link">QQ</a>
+    </div>
+    <span class="footer-copyright">Copyright 2026 Ding. All rights reserved.</span>
+    <a href="#top" class="back-to-top">🔝 回到顶部</a>
+  </footer>
+
+  <script>
+    // Scroll Reveal — fade in sections on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links (backup for browsers without scroll-behavior)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
