@@ -143,7 +143,7 @@
       max-width: var(--max-width);
       margin: 0 auto;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 48px;
     }
 
@@ -243,7 +243,7 @@
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 24px;
     }
 
@@ -254,7 +254,6 @@
       object-fit: cover;
       border: 2px solid rgba(255, 255, 255, 0.08);
       flex-shrink: 0;
-      margin-left: auto;
     }
 
     .profile-card {
@@ -403,6 +402,9 @@
       flex-direction: column;
       gap: 16px;
       transition: border-color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
     }
 
     .dream-card:hover {
@@ -655,8 +657,6 @@
       <p class="hero-bio">还是个 Minecraft 迷，喜欢那种"整个世界都由你来创造"的感觉。从挖到第一块铁矿石，到建起自己的小屋，再到在无边无际的方块世界里冒险——每一次探索都让我着迷。也许我喜欢的不只是游戏本身，而是那种自由和无限可能。</p>
       <p class="hero-bio">哥哥在德国，每次视频他都给我看那边的街道和天空。那些画面让我更加确定：中考只是第一关，走过去，外面还有更大的世界在等我。</p>
       <p class="hero-bio">热爱运动和美食的初中生，对世界充满好奇，梦想着有一天能出国看看更大的世界。目前正全力备战中考。</p>
-    </div>
-    <div class="hero-right">
       <div class="profile-card">
         <div class="profile-card-social">
           <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
@@ -700,11 +700,11 @@
     <span class="section-label">// DREAM</span>
     <h2 class="section-title">梦想清单</h2>
     <div class="dream-grid">
-      <div class="dream-card">
+      <a href="./alps.html" class="dream-card dream-card-link">
         <span class="dream-card-label">Alps</span>
         <h3 class="dream-card-title">阿尔卑斯山</h3>
         <p class="dream-card-desc">想站在阿尔卑斯山巅，看看童话般的雪山小镇，感受大自然的壮阔。</p>
-      </div>
+      </a>
       <div class="dream-card">
         <span class="dream-card-label">Germany</span>
         <h3 class="dream-card-title">去德国找哥哥</h3>
