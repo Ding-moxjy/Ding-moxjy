@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>去见海文哥哥 — Ding.dev</title>
+  <meta name="description" content="我的梦想之一：飞去德国，和海文哥哥见面。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0A0A0B;
+      --accent: #5E6AD2;
+      --text: #FFFFFF;
+      --text-secondary: #A1A1AA;
+      --text-muted: #525259;
+      --card: #141416;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(94, 106, 210, 0.5);
+      --radius: 8px;
+      --max-width: 800px;
+      --side-padding: 64px;
+
+      --font-en: 'Space Grotesk', sans-serif;
+      --font-cn: 'Noto Sans SC', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-cn);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ========================================
+       Nav Bar
+       ======================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px var(--side-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text);
+      transition: color 0.2s ease;
+    }
+
+    .nav-logo:hover {
+      color: var(--accent);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-en);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-back:hover {
+      color: var(--accent);
+      transform: translateX(-2px);
+    }
+
+    /* ========================================
+       Hero Image
+       ======================================== */
+    .hero-image {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+
+    /* ========================================
+       Content
+       ======================================== */
+    .content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px var(--side-padding) 80px;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    /* ========================================
+       Story Section
+       ======================================== */
+    .story {
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .story p {
+      font-family: var(--font-cn);
+      font-size: 17px;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .story p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ========================================
+       Plan Section
+       ======================================== */
+    .plan {
+      margin-bottom: 64px;
+    }
+
+    .plan-list {
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .plan-item {
+      counter-increment: step;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 12px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .plan-item:hover {
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+
+    .plan-item::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .plan-item-title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .plan-item-desc {
+      font-family: var(--font-cn);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* ========================================
+       Footer
+       ======================================== */
+    .footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px var(--side-padding);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: var(--font-en);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-en);
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .footer-back:hover {
+      color: var(--accent);
+    }
+
+    .footer-copyright {
+      font-family: var(--font-en);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .footer-top-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-cn);
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .footer-top-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ========================================
+       Reveal Animation
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       Responsive
+       ======================================== */
+    @media (max-width: 900px) {
+      :root {
+        --side-padding: 24px;
+      }
+
+      .hero-image {
+        height: 240px;
+      }
+
+      .hero-image::after {
+        height: 120px;
+      }
+
+      .title {
+        font-size: 32px;
+      }
+
+      .story p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== Nav Bar ==================== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="./index.html" class="nav-logo">Ding.dev</a>
+      <a href="./index.html" class="nav-back">&larr; 返回首页</a>
+    </div>
+  </nav>
+
+  <!-- ==================== Hero Image ==================== -->
+  <div class="hero-image">
+    <img src="./haiwen-hero.jpg" alt="海文哥哥的封面照片">
+  </div>
+
+  <!-- ==================== Content ==================== -->
+  <div class="content">
+    <span class="kicker">// DREAM</span>
+    <h1 class="title">去见海文哥哥</h1>
+    <p class="subtitle">Germany &mdash; 跨越半个地球的兄弟之约</p>
+
+    <!-- ==================== Story ==================== -->
+    <section class="story reveal">
+      <span class="section-label">// 为什么想去</span>
+      <p>哥哥海文去德国已经好几年了。刚开始我还小，不太懂什么叫"远"，只记得他走的那天，在机场跟我挥手说"等长大点来看我"。那句话我一直记到现在。</p>
+      <p>每次视频，他都给我看那边的街道——干净的石板路、老旧的教堂、路边卖面包的小摊。他说周末会骑车去莱茵河边，秋天的时候满地落叶。那些画面让我觉得，哥哥生活的世界离我好远，又好像很近。</p>
+      <p>我不只是想去看风景，更想亲眼看看哥哥每天走过的路、吃过的东西、看过的天空。想和他一起走在德国的街头，像小时候那样，他在前面走，我在后面追。<strong>海文哥，等我，我一定会来的。</strong></p>
+    </section>
+
+    <!-- ==================== Travel Plan ==================== -->
+    <section class="plan reveal">
+      <span class="section-label">// 旅行计划</span>
+      <ol class="plan-list">
+        <li class="plan-item">
+          <div class="plan-item-title">先搞定中考 &#128218;</div>
+          <div class="plan-item-desc">这是第一关。把中考考好，才有底气跟爸妈说"让我去德国看哥哥吧"。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">办护照和签证 &#129706;</div>
+          <div class="plan-item-desc">让哥哥帮忙确认签证材料，提前把护照办好，不耽误出发。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">飞到德国找哥哥 &#9992;&#65039;</div>
+          <div class="plan-item-desc">漫长的飞行之后，落地就能看到哥哥在出口等我。想想就激动。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">逛哥哥生活的城市 &#127961;&#65039;</div>
+          <div class="plan-item-desc">走一走他每天上下学的路，看看他常去的面包店和公园，感受他的日常。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">一起去莱茵河边 &#128694;</div>
+          <div class="plan-item-desc">像哥哥说的那样，骑车去莱茵河边，秋天的话满地落叶，一定很美。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">看一场球赛 &#9917;</div>
+          <div class="plan-item-desc">德国足球氛围超棒，和哥哥一起在现场看一场球赛，那种感觉肯定一辈子忘不了。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">拍照带回来 &#128248;</div>
+          <div class="plan-item-desc">把这趟旅程的每一刻都记录下来，回来慢慢翻，也分享给朋友们。</div>
+        </li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <div>
+      <a href="./index.html" class="footer-back">&larr; 返回首页</a>
+      <div class="footer-copyright">Copyright 2026 Ding. All rights reserved.</div>
+    </div>
+    <a href="#" class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&#128281; 回到顶部</a>
+  </footer>
+
+  <!-- ==================== Reveal Animation ==================== -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
