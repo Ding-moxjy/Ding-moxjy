@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阿尔卑斯山 — Ding.dev</title>
+  <meta name="description" content="我的梦想之一：去阿尔卑斯山，看看童话般的雪山小镇。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0A0A0B;
+      --accent: #5E6AD2;
+      --text: #FFFFFF;
+      --text-secondary: #A1A1AA;
+      --text-muted: #525259;
+      --card: #141416;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(94, 106, 210, 0.5);
+      --radius: 8px;
+      --max-width: 800px;
+      --side-padding: 64px;
+
+      --font-en: 'Space Grotesk', sans-serif;
+      --font-cn: 'Noto Sans SC', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-cn);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ========================================
+       Nav Bar
+       ======================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px var(--side-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      transition: color 0.2s ease;
+    }
+
+    .nav-logo:hover {
+      color: var(--accent);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-en);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-back:hover {
+      color: var(--accent);
+      transform: translateX(-2px);
+    }
+
+    /* ========================================
+       Hero Image
+       ======================================== */
+    .hero-image {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #2a4a6b 100%);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+
+    /* ========================================
+       Content
+       ======================================== */
+    .content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px var(--side-padding) 80px;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    /* ========================================
+       Story Section
+       ======================================== */
+    .story {
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .story p {
+      font-family: var(--font-cn);
+      font-size: 17px;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .story p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ========================================
+       Plan Section
+       ======================================== */
+    .plan {
+      margin-bottom: 64px;
+    }
+
+    .plan-list {
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .plan-item {
+      counter-increment: step;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 12px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .plan-item:hover {
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+
+    .plan-item::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .plan-item-title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .plan-item-desc {
+      font-family: var(--font-cn);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* ========================================
+       Footer
+       ======================================== */
+    .footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px var(--side-padding);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: var(--font-en);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-en);
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .footer-back:hover {
+      color: var(--accent);
+    }
+
+    .footer-copyright {
+      font-family: var(--font-en);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .footer-top-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-cn);
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .footer-top-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ========================================
+       Reveal Animation
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       Responsive
+       ======================================== */
+    @media (max-width: 900px) {
+      :root {
+        --side-padding: 24px;
+      }
+
+      .hero-image {
+        height: 240px;
+      }
+
+      .title {
+        font-size: 32px;
+      }
+
+      .story p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== Nav Bar ==================== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="./index.html" class="nav-logo">Ding.dev</a>
+      <a href="./index.html" class="nav-back">← 返回首页</a>
+    </div>
+  </nav>
+
+  <!-- ==================== Hero Image ==================== -->
+  <div class="hero-image">
+    <img src="./alps-hero.jpg" alt="阿尔卑斯山雪山风景">
+  </div>
+
+  <!-- ==================== Content ==================== -->
+  <div class="content">
+    <span class="kicker">// DREAM</span>
+    <h1 class="title">阿尔卑斯山</h1>
+    <p class="subtitle">The Alps — 童话里的雪山世界</p>
+
+    <!-- ==================== Story ==================== -->
+    <section class="story reveal">
+      <span class="section-label">// 为什么想去</span>
+      <p>第一次在地理课本上看到阿尔卑斯山的照片，我就被镇住了。那些白雪覆盖的山峰、翠绿的草地、散落在山谷里的小木屋，像极了我在 Minecraft 里搭建的世界——但它是真实存在的。</p>
+      <p>后来在纪录片里看到了少女峰的日出，金色的阳光一点一点爬上雪顶，整个世界安静得只听见风声。那一刻我就想：<strong>总有一天，我要站在那里亲眼看一次。</strong></p>
+      <p>哥哥在德国，离阿尔卑斯山其实很近。每次视频他都说"等你来，我带你去看"，这句话我记了很久。阿尔卑斯山不只是一个风景，它是我在课本里种下的一个梦，也是和哥哥之间的一个约定。</p>
+    </section>
+
+    <!-- ==================== Travel Plan ==================== -->
+    <section class="plan reveal">
+      <span class="section-label">// 旅行计划</span>
+      <ol class="plan-list">
+        <li class="plan-item">
+          <div class="plan-item-title">先搞定中考 📚</div>
+          <div class="plan-item-desc">这是第一关。中考考好了，才能理直气壮地跟爸妈说："让我去一趟吧。"</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">办护照和签证 🛂</div>
+          <div class="plan-item-desc">等哥哥帮忙确认申根签证需要什么材料，提前把护照办好，不耽误时间。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">飞到德国找哥哥 ✈️</div>
+          <div class="plan-item-desc">先飞到哥哥在德国的城市，倒个时差，跟他叙叙旧，然后一起出发。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">坐火车去慕尼黑 🚆</div>
+          <div class="plan-item-desc">从德国坐火车到慕尼黑，这座离阿尔卑斯山最近的大城市，是经典的出发点。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">上少女峰看日出 🌅</div>
+          <div class="plan-item-desc">坐齿轨列车直达少女峰顶，在海拔 3454 米的观景台等一次日出。这是整趟旅行的重头戏。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">逛雪山小镇 🏔️</div>
+          <div class="plan-item-desc">在山脚下的小镇住一晚，吃一次正宗的奶酪火锅，在雪地里走走，感受课本里写的那种"童话世界"。</div>
+        </li>
+        <li class="plan-item">
+          <div class="plan-item-title">拍照记录回来 📸</div>
+          <div class="plan-item-desc">把这一路上看到的风景、吃到的美食、遇到的人都拍下来，回来分享给朋友们，也留给自己慢慢看。</div>
+        </li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <div>
+      <a href="./index.html" class="footer-back">← 返回首页</a>
+      <div class="footer-copyright">Copyright 2026 Ding. All rights reserved.</div>
+    </div>
+    <a href="#" class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">🔝 回到顶部</a>
+  </footer>
+
+  <!-- ==================== Reveal Animation ==================== -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
