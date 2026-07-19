@@ -238,15 +238,6 @@
       transform: translateY(-1px);
     }
 
-    .hero-right {
-      width: 320px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-    }
-
     .avatar {
       width: 320px;
       height: 320px;
@@ -254,61 +245,6 @@
       object-fit: cover;
       border: 2px solid rgba(255, 255, 255, 0.08);
       flex-shrink: 0;
-    }
-
-    .profile-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .profile-card-social {
-      display: flex;
-      gap: 10px;
-      width: 100%;
-      padding: 16px;
-    }
-
-    .profile-card-social .btn {
-      flex: 1;
-      padding: 8px 0;
-      font-size: 13px;
-    }
-
-    .profile-card-divider {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.06);
-      border: none;
-      margin: 0;
-    }
-
-    .quick-nav {
-      width: 100%;
-    }
-
-    .quick-nav-item {
-      display: block;
-      padding: 14px 24px;
-      font-size: 14px;
-      color: var(--text);
-      transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-      cursor: pointer;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .quick-nav-item:last-child {
-      border-bottom: none;
-    }
-
-    .quick-nav-item.en { font-family: var(--font-en); font-weight: 500; }
-    .quick-nav-item.cn { font-family: var(--font-cn); }
-
-    .quick-nav-item:hover {
-      color: var(--accent);
-      background: rgba(94, 106, 210, 0.08);
-      transform: translateX(4px);
     }
 
     /* ========================================
@@ -581,11 +517,6 @@
         height: 180px;
       }
 
-      .hero-right {
-        width: 100%;
-        align-items: center;
-      }
-
       .about-body {
         flex-direction: column;
       }
@@ -657,19 +588,6 @@
       <p class="hero-bio">还是个 Minecraft 迷，喜欢那种"整个世界都由你来创造"的感觉。从挖到第一块铁矿石，到建起自己的小屋，再到在无边无际的方块世界里冒险——每一次探索都让我着迷。也许我喜欢的不只是游戏本身，而是那种自由和无限可能。</p>
       <p class="hero-bio">哥哥在德国，每次视频他都给我看那边的街道和天空。那些画面让我更加确定：中考只是第一关，走过去，外面还有更大的世界在等我。</p>
       <p class="hero-bio">热爱运动和美食的初中生，对世界充满好奇，梦想着有一天能出国看看更大的世界。目前正全力备战中考。</p>
-      <div class="profile-card">
-        <div class="profile-card-social">
-          <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
-          <a href="#about" class="btn btn-ghost">WeChat</a>
-          <a href="#about" class="btn btn-ghost">QQ</a>
-        </div>
-        <hr class="profile-card-divider">
-        <div class="quick-nav">
-          <a href="#about" class="quick-nav-item cn">📖 关于我</a>
-          <a href="#dream" class="quick-nav-item cn">🌍 梦想清单</a>
-          <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="quick-nav-item en">🐙 GitHub</a>
-        </div>
-      </div>
     </div>
   </section>
 
