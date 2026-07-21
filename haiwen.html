@@ -108,7 +108,7 @@
        ======================================== */
     .hero-image {
       width: 100%;
-      height: 100vh;
+      height: clamp(420px, 80vh, 800px);
       overflow: hidden;
       position: relative;
       background: var(--bg);
@@ -131,7 +131,7 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      padding: 0 64px 64px 24px;
+      padding: 0 clamp(16px, 5vw, 64px) clamp(32px, 6vh, 64px) clamp(16px, 3vw, 24px);
     }
 
     .hero-overlay .kicker {
@@ -139,7 +139,7 @@
     }
 
     .hero-overlay .title {
-      font-size: 72px;
+      font-size: clamp(36px, 6vw, 72px);
       line-height: 1.05;
       margin-bottom: 12px;
       text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
@@ -356,18 +356,6 @@
     @media (max-width: 900px) {
       :root {
         --side-padding: 24px;
-      }
-
-      .hero-image {
-        height: 60vh;
-      }
-
-      .hero-image::after {
-        height: 120px;
-      }
-
-      .title {
-        font-size: 32px;
       }
 
       .story p {

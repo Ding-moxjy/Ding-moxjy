@@ -202,14 +202,14 @@
     .hero-name {
       font-family: var(--font-en);
       font-weight: 700;
-      font-size: 88px;
+      font-size: clamp(40px, 7vw, 88px);
       line-height: 1;
       color: var(--text);
     }
 
     .hero-tagline {
       font-family: var(--font-cn);
-      font-size: 32px;
+      font-size: clamp(20px, 3vw, 32px);
       font-weight: 600;
       color: var(--text-secondary);
     }
@@ -265,8 +265,8 @@
     }
 
     .avatar {
-      width: 200px;
-      height: 200px;
+      width: clamp(140px, 18vw, 200px);
+      height: clamp(140px, 18vw, 200px);
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid rgba(255, 255, 255, 0.08);
@@ -294,7 +294,7 @@
     .section-title {
       font-family: var(--font-cn);
       font-weight: 700;
-      font-size: 36px;
+      font-size: clamp(24px, 4vw, 36px);
       color: var(--text);
       margin-bottom: 36px;
     }
@@ -412,7 +412,7 @@
     .motto-quote {
       font-family: var(--font-en);
       font-weight: 700;
-      font-size: 56px;
+      font-size: clamp(28px, 5.5vw, 56px);
       line-height: 1.1;
       color: var(--text);
     }
@@ -523,25 +523,8 @@
         padding: 48px var(--side-padding) 48px;
       }
 
-      .hero-name {
-        font-size: 56px;
-      }
-
-      .hero-kicker {
-        font-size: 14px;
-      }
-
-      .hero-tagline {
-        font-size: 24px;
-      }
-
       .hero-head {
         gap: 16px;
-      }
-
-      .avatar {
-        width: 140px;
-        height: 140px;
       }
 
       .about-body {
@@ -556,10 +539,6 @@
         flex-direction: column;
       }
 
-      .motto-quote {
-        font-size: 32px;
-      }
-
       .section {
         padding: 48px var(--side-padding);
       }
@@ -570,14 +549,6 @@
     }
 
     @media (max-width: 480px) {
-      .hero-name {
-        font-size: 32px;
-      }
-
-      .motto-quote {
-        font-size: 26px;
-      }
-
       .nav-logo {
         font-size: 14px;
       }
