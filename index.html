@@ -160,6 +160,32 @@
       gap: 24px;
     }
 
+    .hero-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-nav-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-family: var(--font-cn);
+      font-size: 14px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .hero-nav-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
     .hero-head-text {
       display: flex;
       flex-direction: column;
@@ -585,6 +611,11 @@
         </div>
         <img src="./avatar.png" alt="Ding" class="avatar">
       </div>
+      <nav class="hero-nav">
+        <a href="#about" class="hero-nav-link">关于</a>
+        <a href="#dream" class="hero-nav-link">梦想</a>
+        <a href="https://github.com/Ding-moxjy" target="_blank" rel="noopener" class="hero-nav-link">GitHub</a>
+      </nav>
       <p class="hero-bio">球场上的汗水、餐桌上的惊喜，都是我课余最期待的事。周末约朋友打一场球，或者去街角那家面馆，简简单单就很开心。</p>
       <p class="hero-bio">还是个 Minecraft 迷，喜欢那种"整个世界都由你来创造"的感觉。从挖到第一块铁矿石，到建起自己的小屋，再到在无边无际的方块世界里冒险——每一次探索都让我着迷。也许我喜欢的不只是游戏本身，而是那种自由和无限可能。</p>
       <p class="hero-bio">哥哥在德国，每次视频他都给我看那边的街道和天空。那些画面让我更加确定：中考只是第一关，走过去，外面还有更大的世界在等我。</p>
