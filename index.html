@@ -265,8 +265,8 @@
     }
 
     .avatar {
-      width: clamp(140px, 18vw, 200px);
-      height: clamp(140px, 18vw, 200px);
+      width: clamp(120px, 18vw, 200px);
+      height: clamp(120px, 18vw, 200px);
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid rgba(255, 255, 255, 0.08);
@@ -545,6 +545,35 @@
 
       .nav-links {
         gap: 20px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-head {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+      }
+
+      .hero-head-text {
+        align-items: center;
+      }
+
+      .avatar {
+        margin-left: 0;
+        order: -1;
+        width: 160px;
+        height: 160px;
+      }
+
+      .hero-nav {
+        justify-content: center;
+      }
+
+      .hero-bio {
+        text-align: center;
+        margin: 0 auto;
       }
     }
 
