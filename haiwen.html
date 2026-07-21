@@ -113,15 +113,42 @@
       position: relative;
       background: var(--bg);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-end;
     }
 
     .hero-image img {
-      max-width: 100%;
-      max-height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       display: block;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 var(--side-padding) 64px;
+    }
+
+    .hero-overlay .kicker {
+      margin-bottom: 16px;
+    }
+
+    .hero-overlay .title {
+      font-size: 64px;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-overlay .subtitle {
+      margin-bottom: 0;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
     }
 
     .hero-image::after {
@@ -130,8 +157,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 200px;
-      background: linear-gradient(to bottom, transparent, var(--bg));
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, rgba(10, 10, 11, 0.9));
+      z-index: 1;
     }
 
     /* ========================================
@@ -362,13 +390,15 @@
   <!-- ==================== Hero Image ==================== -->
   <div class="hero-image">
     <img src="./haiwen-hero.jpg" alt="海文哥哥的封面照片">
+    <div class="hero-overlay">
+      <span class="kicker">// DREAM</span>
+      <h1 class="title">去见海文哥哥</h1>
+      <p class="subtitle">Germany &mdash; 跨越半个地球的兄弟之约</p>
+    </div>
   </div>
 
   <!-- ==================== Content ==================== -->
   <div class="content">
-    <span class="kicker">// DREAM</span>
-    <h1 class="title">去见海文哥哥</h1>
-    <p class="subtitle">Germany &mdash; 跨越半个地球的兄弟之约</p>
 
     <!-- ==================== Story ==================== -->
     <section class="story reveal">

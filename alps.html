@@ -108,18 +108,47 @@
        ======================================== */
     .hero-image {
       width: 100%;
-      height: 70vh;
+      height: 100vh;
       overflow: hidden;
       position: relative;
       background: var(--bg);
+      display: flex;
+      align-items: flex-end;
     }
 
     .hero-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       display: block;
       object-fit: cover;
       object-position: center;
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 var(--side-padding) 64px;
+    }
+
+    .hero-overlay .kicker {
+      margin-bottom: 16px;
+    }
+
+    .hero-overlay .title {
+      font-size: 64px;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-overlay .subtitle {
+      margin-bottom: 0;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
     }
 
     .hero-image::after {
@@ -128,8 +157,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 120px;
-      background: linear-gradient(to bottom, transparent, var(--bg));
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, rgba(10, 10, 11, 0.9));
+      z-index: 1;
     }
 
     /* ========================================
@@ -356,13 +386,15 @@
   <!-- ==================== Hero Image ==================== -->
   <div class="hero-image">
     <img src="./alps-hero.jpg" alt="阿尔卑斯山雪山风景">
+    <div class="hero-overlay">
+      <span class="kicker">// DREAM</span>
+      <h1 class="title">阿尔卑斯山</h1>
+      <p class="subtitle">The Alps — 童话里的雪山世界</p>
+    </div>
   </div>
 
   <!-- ==================== Content ==================== -->
   <div class="content">
-    <span class="kicker">// DREAM</span>
-    <h1 class="title">阿尔卑斯山</h1>
-    <p class="subtitle">The Alps — 童话里的雪山世界</p>
 
     <!-- ==================== Story ==================== -->
     <section class="story reveal">
