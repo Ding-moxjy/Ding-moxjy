@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英语 — Ding.dev</title>
+  <meta name="description" content="英语学习思路与方法。这是给我自己留的模板，内容慢慢填。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0A0A0B;
+      --accent: #5E6AD2;
+      --text: #FFFFFF;
+      --text-secondary: #A1A1AA;
+      --text-muted: #525259;
+      --text-placeholder: #4B5563;
+      --card: #141416;
+      --card-dark: #0F0F14;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(94, 106, 210, 0.5);
+      --radius: 8px;
+      --max-width: 800px;
+      --side-padding: 64px;
+
+      --font-en: 'Space Grotesk', sans-serif;
+      --font-cn: 'Noto Sans SC', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-cn);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Nav Bar */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px var(--side-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      transition: color 0.2s ease;
+    }
+
+    .nav-logo:hover {
+      color: var(--accent);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-cn);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-back:hover {
+      color: var(--accent);
+      transform: translateX(-2px);
+    }
+
+    /* Hero Image */
+    .hero-image {
+      width: 100%;
+      height: clamp(420px, 70vh, 700px);
+      overflow: hidden;
+      position: relative;
+      background: var(--bg);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--side-padding) clamp(32px, 6vh, 64px);
+    }
+
+    .hero-overlay .kicker {
+      margin-bottom: 16px;
+    }
+
+    .hero-overlay .title {
+      font-family: var(--font-cn);
+      font-weight: 900;
+      font-size: clamp(44px, 8vw, 96px);
+      line-height: 1.05;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-overlay .subtitle {
+      font-family: var(--font-cn);
+      font-weight: 500;
+      font-size: clamp(14px, 2vw, 18px);
+      margin-bottom: 0;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, rgba(10, 10, 11, 0.9));
+      z-index: 1;
+      animation: overlayFadeIn 1.6s ease-out 0.3s both;
+    }
+
+    /* Page Load Animation */
+    @keyframes heroImageReveal {
+      from {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes overlayFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hero-image img {
+      animation: heroImageReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-overlay .kicker {
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    .hero-overlay .title {
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+    }
+
+    .hero-overlay .subtitle {
+      animation: fadeInUp 0.8s ease-out 1s both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-image img,
+      .hero-image::after,
+      .hero-overlay .kicker,
+      .hero-overlay .title,
+      .hero-overlay .subtitle {
+        animation: none;
+      }
+    }
+
+    /* Content */
+    .content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 64px var(--side-padding) 80px;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    /* Notes Section */
+    .notes {
+      margin-bottom: 80px;
+    }
+
+    .notes-header {
+      margin-bottom: 36px;
+    }
+
+    .notes-intro {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .note-card {
+      background: var(--card-dark);
+      border: 1px dashed rgba(94, 106, 210, 0.4);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .note-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .note-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .note-num {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .note-title {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: clamp(20px, 2.5vw, 28px);
+      color: var(--text);
+    }
+
+    .note-box {
+      background: var(--bg);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 20px;
+      min-height: 160px;
+    }
+
+    .note-placeholder {
+      font-family: var(--font-cn);
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-placeholder);
+      white-space: pre-line;
+    }
+
+    /* Countdown Section */
+    .countdown {
+      margin-bottom: 80px;
+      padding: 48px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .countdown-label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .countdown-row {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .countdown-number {
+      font-family: var(--font-en);
+      font-weight: 800;
+      font-size: clamp(72px, 14vw, 140px);
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .countdown-unit {
+      font-family: var(--font-cn);
+      font-weight: 700;
+      font-size: clamp(24px, 4vw, 36px);
+      color: var(--text);
+    }
+
+    .countdown-sub {
+      font-family: var(--font-cn);
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-top: 16px;
+    }
+
+    /* Back Section */
+    .back-section {
+      text-align: center;
+      padding: 40px 0 80px;
+    }
+
+    .back-hint {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--card);
+      border: 1px solid var(--accent);
+      border-radius: 28px;
+      font-family: var(--font-cn);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(94, 106, 210, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .back-btn .arrow {
+      color: var(--accent);
+      font-family: var(--font-en);
+      font-weight: 700;
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      :root {
+        --side-padding: 24px;
+      }
+
+      .notes-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .note-card {
+        padding: 22px;
+      }
+
+      .note-box {
+        min-height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav Bar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="./index.html" class="nav-logo">Ding.dev</a>
+      <a href="./qizhong.html" class="nav-back">← 返回考上七中林荫</a>
+    </div>
+  </nav>
+
+  <!-- Hero Image -->
+  <div class="hero-image">
+    <img src="./yingyu-hero.jpg" alt="英语学习封面">
+    <div class="hero-overlay">
+      <span class="kicker">// LEARNING NOTES</span>
+      <h1 class="title">英语</h1>
+      <p class="subtitle">学习思路与方法 · 留给你自己写</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Notes -->
+    <section class="notes reveal">
+      <div class="notes-header">
+        <span class="kicker">// NOTES · 学习思路</span>
+        <h2 class="title">在这里写下你的思路</h2>
+        <p class="notes-intro">下面五个板块留空给你，编辑 HTML 后填入你自己的学习方法。</p>
+      </div>
+
+      <div class="notes-grid">
+        <div class="note-card">
+          <div class="note-header">
+            <span class="note-num">01</span>
+            <h3 class="note-title">学习目标</h3>
+          </div>
+          <div class="note-box">
+            <p class="note-placeholder">在这里写下你的学习目标
+比如：这次考试进步10名
+比如：英语基础题不丢分</p>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-header">
+            <span class="note-num">02</span>
+            <h3 class="note-title">学习方法</h3>
+          </div>
+          <div class="note-box">
+            <p class="note-placeholder">在这里写下你的学习方法
+比如：每天固定做几道英语题
+比如：错题当天复盘</p>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-header">
+            <span class="note-num">03</span>
+            <h3 class="note-title">错题反思</h3>
+          </div>
+          <div class="note-box">
+            <p class="note-placeholder">记录你最近的错题
+错在哪里？为什么错？
+下次怎么避免？</p>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-header">
+            <span class="note-num">04</span>
+            <h3 class="note-title">每周计划</h3>
+          </div>
+          <div class="note-box">
+            <p class="note-placeholder">这周要做什么？
+周一 / 周三 / 周五…
+每天完成什么？</p>
+          </div>
+        </div>
+      </div>
+
+        <div class="note-card">
+          <div class="note-header">
+            <span class="note-num">05</span>
+            <h3 class="note-title">笔记整理</h3>
+          </div>
+          <div class="note-box">
+            <p class="note-placeholder">把这一周的笔记整理到这里
+关键词 / 知识点 / 思维导图 / 重点回顾
+考前翻一遍，比重新看一遍书更有用。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="countdown reveal">
+      <span class="countdown-label">// COUNTDOWN</span>
+      <div class="countdown-row">
+        <span class="countdown-number">308</span>
+        <span class="countdown-unit">天</span>
+      </div>
+      <p class="countdown-sub">距离 2026 年中考</p>
+    </section>
+
+  </div>
+
+  <!-- Back Section -->
+  <section class="back-section">
+    <p class="back-hint">写完了？回到考上七中林荫继续吧。</p>
+    <a href="./qizhong.html" class="back-btn">
+      <span class="arrow">←</span>
+      <span>返回考上七中林荫</span>
+    </a>
+  </section>
+
+  <!-- Reveal Animation -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
